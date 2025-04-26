@@ -249,4 +249,159 @@ if (eventDateInput) {
   $('#timepicker').timepicker();
 
 
+  function formatDateTime(dateStr) {
+    if (!dateStr) return '';
+  
+    const date = new Date(dateStr);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = String(date.getFullYear());
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+  
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
+  }
+    // WISH
+  function getWishes({ page = 1, limit = 20 } = {}) {
+    var wish = $('.rsvp');
+    var theGallery = $('#the-gallery');
+    var wishBoxSpinner = $('.wish-box-spinner');
+    var wishBoxContent = $('.wish-box-content');
+    var pagination = $('#pagination');
+
+    wishBoxSpinner.show();
+    wishBoxContent.hide();
+
+    $.ajax({
+      url: 'https://wishes-git-master-giap-nguyens-projects.vercel.app/v1/wishes',
+      type: 'GET',
+      dataType: 'json',
+      data: { page, limit },
+      timeout: 60000,
+      success: function (response) {
+        var wishes = response.data || [];
+        var meta = response.meta || {};
+
+        debugger
+
+        if (!!wishes) {
+          wishBoxContent.empty();
+
+          wishes.forEach(function (wish) {
+            var { name, created_at: createdAt, content } = wish || {};
+
+            wishBoxContent.append(`
+              <div class="wish-box-item">
+                <p class="name"><strong>${name || ''}</strong></p>
+                <p class="time">${formatDateTime(createdAt || '')}</p>
+                <p class="content">${content || ''}</p>
+              </div>
+            `);
+          });
+
+          wishBoxSpinner.hide();
+          wishBoxContent.show();
+        }
+
+        if (!!meta && meta.total_pages > 1) {
+          var { current_page: currentPage, total_pages: totalPages } = meta || {};
+
+          pagination.empty();
+          pagination.append(`
+            <li class="${currentPage === 1 ? 'disabled' : ''}">
+              <a
+                class="pagination-link prev"
+                data-page="${currentPage - 1}"
+                data-total-pages="${totalPages}"
+              >
+                <i class="fa fa-angle-left"></i>
+              </a>
+            </li>
+          `);
+
+          for (let i = 1; i <= totalPages; i++) {
+            pagination.append(`
+              <li class="${currentPage === i ? 'active' : ''}">
+                <a
+                  class="pagination-link"
+                  data-page="${i}"
+                  data-total-pages="${totalPages}"
+                >
+                  ${i}
+                </a>
+              </li>
+            `);
+          }
+
+          pagination.append(`
+            <li class="${currentPage === totalPages ? 'disabled' : ''}">
+              <a
+                class="pagination-link next"
+                data-page="${currentPage + 1}"
+                data-total-pages="${totalPages}"
+              >
+                <i class="fa fa-angle-right"></i>
+              </a>
+            </li>
+          `);
+        }
+      },
+      error: function (jqXHR) {
+        theGallery.addClass('empty-wish');
+        wish.hide();
+        console.log('jqXHR :>> ', jqXHR);
+      },
+    });
+  }
+  
+    // PAGINATION
+    let currentPage = 1;
+  
+    $(document).on('click', '.pagination-link', function () {
+      var page = $(this).data('page');
+      var totalPages = $(this).data('total-pages');
+  
+      if (page < 1 || page > totalPages || currentPage === page) return;
+  
+      currentPage = page;
+      getWishes({ page });
+    });
+  
+    // ADD WISH
+    $(document).on('click', '.btn-wish', function () {
+      var $this = $(this);
+      $this.prop('disabled', true);
+  
+      $.ajax({
+        url: 'https://wishes-git-master-giap-nguyens-projects.vercel.app/v1/wishes',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          name: $('#name').val().trim(),
+          content: $('#content').val().trim(),
+        }),
+        success: function () {
+          getWishes();
+          $('#name').val('');
+          $('#content').val('');
+        },
+        error: function (jqXHR) {
+          $this.prop('disabled', false);
+          console.log('jqXHR :>> ', jqXHR);
+        },
+      });
+    });
+  
+    $(document).on('input', '#name, #content', function () {
+      if (!!$('#name').val().trim() && !!$('#content').val().trim()) {
+        $('.btn-wish').prop('disabled', false);
+      } else {
+        $('.btn-wish').prop('disabled', true);
+      }
+    });
+  
+    // GET WISH
+    getWishes();
+
+
 })(jQuery);
