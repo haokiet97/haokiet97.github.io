@@ -5648,3 +5648,32 @@ textarea#content {
 }
 
 /* ... rest of existing code ... */
+
+/* Counter Section Responsive Styles */
+.counter-section {
+    padding: 20px 0;
+}
+
+@media (max-width: 576px) {
+    .counter-section {
+        padding: 15px 0;
+    }
+    
+    .cd-timer {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .cd-item {
+        margin: 5px 10px;
+    }
+    
+    .cd-item span {
+        font-size: 24px;
+    }
+    
+    .cd-item p {
+        font-size: 14px;
+    }
+}
