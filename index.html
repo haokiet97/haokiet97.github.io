@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="assets/css/slick.css">
 	<link rel="stylesheet" href="assets/css/nice-select.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style2.css">
     <link rel="stylesheet" href="assets/css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -58,8 +59,9 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="#slider">Trang Chủ</a></li>
-                                        <li><a href="#about">Thư mời</a></li>
-                                        <li><a href="#guest">Khách mời</a></li>
+                                        <li><a href="#about">Thư mời </a></li>
+                                        <li><a href="#guest">Khách mời </a></li>
+                                        <li><a href="#notebook">Lưu Bút </a></li>
                                         <li><a href="#calendar">Lịch trình</a></li>
                                         <li><a href="#gallery">Khoảnh khắc</a></li>
                                     </ul>
@@ -204,10 +206,10 @@
                     <!-- about-img -->
                     <div class="about-img ">
                         <div class="about-font-img d-none d-lg-block">
-                            <img src="assets/img/gallery/about2.jpg" alt="">
+                            <img src="assets/img/gallery/about1.PNG" alt="">
                         </div>
                         <div class="about-back-img ">
-                            <img src="assets/img/gallery/about1.jpg" alt="">
+                            <img src="assets/img/gallery/about2.PNG" alt="">
                         </div>
                     </div>
                 </div>
@@ -314,48 +316,44 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                  <div class="latest-posts-widget widget widget-rsvp wow fadeIn">
-                    <div class="ft-about-content">
-                      <h4 class="widget-title cursive">
-                        Cảm ơn bạn rất nhiều vì đã gửi những lời chúc mừng tốt đẹp nhất đến !
-                      </h4>
-                      <form
-                        id="wish-form"
-                        class="form validate-rsvp-form row contact-validation-active"
-                        onsubmit="return false"
-                      >
-                        <div class="col col-sm-12" style="margin-bottom: 20px">
-                          <input
-                            id="name"
-                            type="text"
-                            name="name"
-                            class="form-control mb-0"
-                            style="margin-bottom: 4px"
-                            placeholder="Họ tên*"
-                            maxlength="255"
-                          />
+                    <div class="latest-posts-widget widget widget-rsvp wow fadeIn">
+                        <div class="ft-about-content">
+                            <h4 class="widget-title cursive">
+                                Cảm ơn bạn rất nhiều vì đã gửi những lời chúc mừng tốt đẹp nhất đến!
+                            </h4>
+                            <form
+                                id="wish-form"
+                                class="form validate-rsvp-form contact-validation-active"
+                                onsubmit="return false"
+                            >
+                                <div class="form-group">
+                                    <input
+                                        id="name"
+                                        type="text"
+                                        name="name"
+                                        class="form-control"
+                                        placeholder="Họ tên*"
+                                        maxlength="255"
+                                    />
+                                </div>
+                                <div class="form-group">
+                                    <div class="textarea-emoji-picker">
+                                        <textarea
+                                            id="content"
+                                            class="form-control"
+                                            name="content"
+                                            placeholder="Lời chúc của bạn*"
+                                            maxlength="1000"
+                                        ></textarea>
+                                    </div>
+                                </div>
+                                <button class="btn btn-wish" disabled>
+                                    <i class="fa fa-send"></i>
+                                    <span>Gửi lời chúc</span>
+                                </button>
+                            </form>
                         </div>
-                        <div class="col col-sm-12" style="margin-bottom: 20px">
-                          <div class="textarea-emoji-picker">
-                            <div class="vitualTextarea">
-                              <textarea
-                                id="content"
-                                class="form-control"
-                                name="content"
-                                style="margin-bottom: 4px"
-                                placeholder="Lời chúc của bạn*"
-                                maxlength="1000"
-                              ></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn btn-primary btn-wish" disabled>
-                          <i class="fa fa-send"></i>
-                          <span>Gửi lời chúc</span>
-                        </button>
-                      </form>
                     </div>
-                  </div>
                 </div>
                 <div class="col-md-6">
                   <div class="wish-box ft-about-content">

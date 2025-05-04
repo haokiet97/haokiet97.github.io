@@ -281,9 +281,6 @@ if (eventDateInput) {
       success: function (response) {
         var wishes = response.data || [];
         var meta = response.meta || {};
-
-        debugger
-
         if (!!wishes) {
           wishBoxContent.empty();
 
