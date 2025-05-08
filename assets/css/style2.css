@@ -5689,8 +5689,9 @@ textarea#content {
 
 .gallery-item img {
   width: 100%;
-  height: 300px;
-  object-fit: cover;
+  height: auto;
+  max-height: 600px;
+  object-fit: contain;
   border-radius: 8px;
   transition: transform 0.3s ease;
 }
@@ -5735,6 +5736,6 @@ textarea#content {
 
 @media (max-width: 768px) {
   .gallery-item img {
-      height: 200px;
+    max-height: 500px;
   }
 }
