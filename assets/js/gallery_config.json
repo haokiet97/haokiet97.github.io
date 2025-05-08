@@ -1,0 +1,20 @@
+{
+  "gallery_items": [
+    {
+      "src": "assets/img/gallery/gallery1.png",
+      "alt": "Gallery Image 1"
+    },
+    {
+      "src": "assets/img/gallery/gallery2.png", 
+      "alt": "Gallery Image 2"
+    },
+    {
+      "src": "assets/img/gallery/gallery3.png",
+      "alt": "Gallery Image 3" 
+    },
+    {
+      "src": "assets/img/gallery/gallery4.png",
+      "alt": "Gallery Image 4"
+    }
+  ]
+}

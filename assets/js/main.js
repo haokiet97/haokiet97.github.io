@@ -405,30 +405,40 @@
 
 /* Gallery Carousel */
 function initGalleryCarousel() {
-  $('.gallery-carousel').owlCarousel({
-    loop: true,
-    margin: 20,
-    nav: true,
-    dots: true,
-    lazyLoad: true,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true,
-    navText: [
-      '<i class="fas fa-chevron-left"></i>',
-      '<i class="fas fa-chevron-right"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 3
+  // Load gallery config
+  $.getJSON('assets/js/gallery_config.json', function(config) {
+    // Clear existing items
+    $('.gallery-carousel').empty();
+    
+    // Add items from config
+    config.gallery_items.forEach(function(item) {
+      $('.gallery-carousel').append(`
+        <div class="gallery-item">
+          <img src="${item.src}" loading="lazy" alt="${item.alt}">
+        </div>
+      `);
+    });
+
+    // Initialize carousel
+    $('.gallery-carousel').owlCarousel({
+      loop: true,
+      margin: 20,
+      nav: true,
+      dots: true,
+      lazyLoad: true,
+      autoplay: true,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      navText: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+      ],
+      responsive: {
+        0: { items: 1 },
+        600: { items: 2 },
+        1000: { items: 3 }
       }
-    }
+    });
   });
 }
 
