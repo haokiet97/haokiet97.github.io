@@ -406,7 +406,7 @@
 /* Gallery Carousel */
 function initGalleryCarousel() {
   // Load gallery config
-  $.getJSON('assets/js/gallery_config.json', function(config) {
+  $.getJSON('assets/js/config/gallery_config.json', function(config) {
     // Clear existing items
     $('.gallery-carousel').empty();
     
@@ -442,7 +442,79 @@ function initGalleryCarousel() {
   });
 }
 
+/* Load Guests */
+function loadGuests() {
+  $.getJSON('assets/js/config/guest_config.json', function(config) {
+    const guestContainer = $('#guest .row').eq(1);
+    guestContainer.empty();
+    
+    config.guests.forEach(function(guest) {
+      const socialLinks = guest.social.map(social => 
+        `<li><a href="${social.url}"><i class="${social.icon}"></i></a></li>`
+      ).join('');
+
+      const guestHtml = `
+        <div class="col-lg-3 col-md-4 col-sm-6">
+          <div class="single-team mb-30">
+            <div class="team-img">
+              <img src="${guest.image}" loading="lazy" alt="${guest.name}">
+              <ul class="team-social">
+                ${socialLinks}
+              </ul>
+            </div>
+            <div class="team-caption">
+              <h3><a href="#">${guest.name}</a></h3>
+              <p>${guest.role}</p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      guestContainer.append(guestHtml);
+    });
+  });
+}
+
+/* Load Calendar */
+function loadCalendar() {
+  $.getJSON('assets/js/config/calendar_config.json', function(config) {
+    const calendarContainer = $('#accordionExample');
+    calendarContainer.empty();
+    
+    config.calendar_items.forEach(function(item) {
+      const calendarHtml = `
+        <div class="card">
+          <div class="card-header" id="${item.id}">
+            <h2 class="mb-0">
+              <a href="#" class="btn-link ${!item.expanded ? 'collapsed' : ''}" 
+                 data-toggle="collapse" 
+                 data-target="#collapse${item.id.replace('heading', '')}" 
+                 aria-expanded="${item.expanded}" 
+                 aria-controls="collapse${item.id.replace('heading', '')}">
+                <span>${item.time}</span>
+                <p>${item.title}</p>
+              </a>
+            </h2>
+          </div>
+          <div id="collapse${item.id.replace('heading', '')}" 
+               class="collapse ${item.expanded ? 'show' : ''}" 
+               aria-labelledby="${item.id}" 
+               data-parent="#accordionExample">
+            <div class="card-body">
+              ${item.content}
+            </div>
+          </div>
+        </div>
+      `;
+      
+      calendarContainer.append(calendarHtml);
+    });
+  });
+}
+
 $(document).ready(function() {
+  loadGuests();
+  loadCalendar();
   initGalleryCarousel();
 });
 
