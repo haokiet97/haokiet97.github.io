@@ -1,7 +1,31 @@
 {
     "guests": [
       {
-        "name": "Hoàng Thị Mai Anh",
+        "name": "Thầy Trung",
+        "role": "Hiệu Trưởng",
+        "image": "assets/img/gallery/unknow_avatar.jpg",
+        "social": [
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/",
+            "icon": "fab fa-facebook-f"
+          }
+        ]
+      },
+      {
+        "name": "Thầy Chương An",
+        "role": "Nguyên Hiệu Trưởng",
+        "image": "assets/img/gallery/unknow_avatar.jpg",
+        "social": [
+          {
+            "type": "facebook",
+            "url": "https://www.facebook.com/an.bui.940436",
+            "icon": "fab fa-facebook-f"
+          }
+        ]
+      },
+      {
+        "name": "Cô Mai Anh",
         "role": "Giáo Viên Tin Học",
         "image": "assets/img/gallery/anhhtm.jpg",
         "social": [
@@ -9,77 +33,30 @@
             "type": "facebook",
             "url": "https://www.facebook.com/hoangthi.maianh.9",
             "icon": "fab fa-facebook-f"
-          },
-          {
-            "type": "website",
-            "url": "#",
-            "icon": "fas fa-globe"
           }
         ]
       },
       {
-        "name": "Vũ Mạnh Tuấn",
-        "role": "Co Founder",
-        "image": "assets/img/gallery/team2.png",
+        "name": "Thầy Việt Phú",
+        "role": "Giáo Viên Tiếng Anh",
+        "image": "assets/img/gallery/viet_phu.jpg",
         "social": [
           {
             "type": "facebook",
-            "url": "#",
+            "url": "https://www.facebook.com/vietphu26886",
             "icon": "fab fa-facebook-f"
-          },
-          {
-            "type": "twitter",
-            "url": "#",
-            "icon": "fab fa-twitter"
-          },
-          {
-            "type": "website",
-            "url": "#",
-            "icon": "fas fa-globe"
           }
         ]
       },
       {
-        "name": "Nguyễn Bá Quân",
-        "role": "Co Founder",
-        "image": "assets/img/gallery/team3.png",
+        "name": "Thầy Nguyễn Tuấn",
+        "role": "Giáo Viên Toán Học",
+        "image": "assets/img/gallery/nguyen_tuan.jpg",
         "social": [
           {
             "type": "facebook",
-            "url": "#",
+            "url": "https://www.facebook.com/tuan.nguyen.933260",
             "icon": "fab fa-facebook-f"
-          },
-          {
-            "type": "twitter",
-            "url": "#",
-            "icon": "fab fa-twitter"
-          },
-          {
-            "type": "website",
-            "url": "#",
-            "icon": "fas fa-globe"
-          }
-        ]
-      },
-      {
-        "name": "Nguyễn Văn Giáp",
-        "role": "Co Founder", 
-        "image": "assets/img/gallery/team4.png",
-        "social": [
-          {
-            "type": "facebook",
-            "url": "#",
-            "icon": "fab fa-facebook-f"
-          },
-          {
-            "type": "twitter",
-            "url": "#",
-            "icon": "fab fa-twitter"
-          },
-          {
-            "type": "website",
-            "url": "#",
-            "icon": "fas fa-globe"
           }
         ]
       }
