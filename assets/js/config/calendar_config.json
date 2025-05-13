@@ -3,15 +3,22 @@
     {
       "id": "headingOne",
       "time": "8:00 AM - 8:30 AM",
-      "title": "Checkin",
-      "content": "Check-in, nhận quà, chụp ảnh với mô hình \"Trâu về Xuân Áng\".",
+      "title": "Tập chung Checkin",
+      "content": "Check-in, nhận quà và áo lưu niệm.",
       "expanded": true
     },
     {
       "id": "headingTwo", 
-      "time": "8:30 AM - 9:00 AM",
+      "time": "8:30 AM - 10:00 AM",
       "title": "Bắt đầu sự kiện",
-      "content": "Clip ký ức + MC giới thiệu ý nghĩa \"T.R.A.U\"",
+      "content": "Giao lưu cùng thầy cô giáo, chụp ảnh kỷ niệm và ôn lại những kỷ niệm trong lớp học",
+      "expanded": false
+    },
+    {
+      "id": "headingThree", 
+      "time": "10:30 AM - --:-- AM",
+      "title": "Bữa tiệc thân mật và ôn lại những kỷ niệm",
+      "content": "Nhà Hàng Minh Châu- Khu 6, Xuân Áng",
       "expanded": false
     }
   ]
