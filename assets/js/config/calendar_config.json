@@ -2,23 +2,37 @@
   "calendar_items": [
     {
       "id": "headingOne",
-      "time": "8:00 AM - 8:30 AM",
+      "time": "7:00 AM - 7:30 AM",
       "title": "Tập chung Checkin",
       "content": "Check-in, nhận quà và áo lưu niệm.",
       "expanded": true
     },
     {
       "id": "headingTwo", 
-      "time": "8:30 AM - 10:00 AM",
-      "title": "Bắt đầu sự kiện",
-      "content": "Giao lưu cùng thầy cô giáo, chụp ảnh kỷ niệm và ôn lại những kỷ niệm trong lớp học",
+      "time": "7:30 AM - 8:30 AM",
+      "title": "Chụp ảnh ký niệm cổng trường, sân trường",
+      "content": "Tập chung giao lưu chụp ảnh tự do",
       "expanded": false
     },
     {
       "id": "headingThree", 
+      "time": "8:30 AM - 9:00 AM",
+      "title": "Tập trung vào lớp ổn định chỗ ngồi",
+      "content": "Tập trung chỉnh đốn trang phục vào lớp ổn định chỗ ngồi",
+      "expanded": false
+    },
+    {
+      "id": "headingFour", 
+      "time": "9:00 AM - 10:30 AM",
+      "title": "Sự kiện kỷ niệm 10 năm ra trường trong lớp",
+      "content": "Tổ chức sự kiện với sự tham gia của thầy cô và toàn thể tập thể lớp G khóa 32",
+      "expanded": false
+    },
+    {
+      "id": "headingFive", 
       "time": "10:30 AM - --:-- AM",
-      "title": "Bữa tiệc thân mật và ôn lại những kỷ niệm",
-      "content": "Nhà Hàng Minh Châu- Khu 6, Xuân Áng",
+      "title": "Sự kiện kỷ niệm tiệc mừng",
+      "content": "Nhà hàng Minh Châu, khu 06, Xuân Áng",
       "expanded": false
     }
   ]

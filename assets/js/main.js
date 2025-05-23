@@ -400,124 +400,181 @@
   // GET WISH
   getWishes();
 
-
-  // ... existing code ...
-
-/* Gallery Carousel */
-function initGalleryCarousel() {
-  // Load gallery config
-  $.getJSON('assets/js/config/gallery_config.json', function(config) {
-    // Clear existing items
-    $('.gallery-carousel').empty();
+  // Toast function
+  function showToast(message, type = 'info') {
+    const toast = $(`<div class="toast-notification ${type}">${message}</div>`);
+    $('body').append(toast);
     
-    // Add items from config
-    config.gallery_items.forEach(function(item) {
-      $('.gallery-carousel').append(`
-        <div class="gallery-item">
-          <img src="${item.src}" loading="lazy" alt="${item.alt}">
-        </div>
-      `);
+    toast.fadeIn(400).delay(3000).fadeOut(400, function() {
+      $(this).remove();
     });
+  }
 
-    // Initialize carousel
-    $('.gallery-carousel').owlCarousel({
-      loop: true,
-      margin: 20,
-      nav: true,
-      dots: true,
-      lazyLoad: true,
-      autoplay: true,
-      autoplayTimeout: 5000,
-      autoplayHoverPause: true,
-      navText: [
-        '<i class="fas fa-chevron-left"></i>',
-        '<i class="fas fa-chevron-right"></i>'
-      ],
-      responsive: {
-        0: { items: 1 },
-        600: { items: 2 },
-        1000: { items: 3 }
+  // Interval reload
+  let wishesInterval = null;
+  const RELOAD_INTERVAL = 30000; // Reload every 30 seconds
+
+  $(document).on("click", "#btnReload", function() {
+    const $this = $(this);
+    
+    if (wishesInterval) {
+      // If interval exists, clear it and update button state
+      showToast('Auto reload disabled', 'warning');
+      clearInterval(wishesInterval);
+      wishesInterval = null;
+      $this.removeClass('active');
+    } else {
+      // If no interval, start it and update button state
+      showToast(`Auto reload enabled - Every ${RELOAD_INTERVAL/1000}s`, 'success');
+      wishesInterval = setInterval(getWishes, RELOAD_INTERVAL);
+      $this.addClass('active');
+    }
+  });
+
+  // Add toast styles
+  const toastStyles = `
+    <style>
+      .toast-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 15px 25px;
+        border-radius: 4px;
+        color: white;
+        font-size: 14px;
+        z-index: 9999;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       }
-    });
-  });
-}
+      .toast-notification.success {
+        background-color: #4CAF50;
+      }
+      .toast-notification.warning {
+        background-color: #ff9800;
+      }
+      .toast-notification.info {
+        background-color: #2196F3;
+      }
+      .toast-notification.error {
+        background-color: #f44336;
+      }
+    </style>
+  `;
+  $('head').append(toastStyles);
 
-/* Load Guests */
-function loadGuests() {
-  $.getJSON('assets/js/config/guest_config.json', function(config) {
-    const guestContainer = $('#guest .row').eq(1);
-    guestContainer.empty();
-    
-    config.guests.forEach(function(guest) {
-      const socialLinks = guest.social.map(social => 
-        `<li><a href="${social.url}"><i class="${social.icon}"></i></a></li>`
-      ).join('');
-
-      const guestHtml = `
-        <div class="col-lg-3 col-md-4 col-sm-6">
-          <div class="single-team mb-30">
-            <div class="team-img">
-              <img src="${guest.image}" loading="lazy" alt="${guest.name}">
-              <ul class="team-social">
-                ${socialLinks}
-              </ul>
-            </div>
-            <div class="team-caption">
-              <h3><a href="#">${guest.name}</a></h3>
-              <p>${guest.role}</p>
-            </div>
-          </div>
-        </div>
-      `;
+  /* Gallery Carousel */
+  function initGalleryCarousel() {
+    // Load gallery config
+    $.getJSON('assets/js/config/gallery_config.json', function(config) {
+      // Clear existing items
+      $('.gallery-carousel').empty();
       
-      guestContainer.append(guestHtml);
-    });
-  });
-}
-
-/* Load Calendar */
-function loadCalendar() {
-  $.getJSON('assets/js/config/calendar_config.json', function(config) {
-    const calendarContainer = $('#accordionExample');
-    calendarContainer.empty();
-    
-    config.calendar_items.forEach(function(item) {
-      const calendarHtml = `
-        <div class="card">
-          <div class="card-header" id="${item.id}">
-            <h2 class="mb-0">
-              <a href="#" class="btn-link ${!item.expanded ? 'collapsed' : ''}" 
-                 data-toggle="collapse" 
-                 data-target="#collapse${item.id.replace('heading', '')}" 
-                 aria-expanded="${item.expanded}" 
-                 aria-controls="collapse${item.id.replace('heading', '')}">
-                <span>${item.time}</span>
-                <p>${item.title}</p>
-              </a>
-            </h2>
+      // Add items from config
+      config.gallery_items.forEach(function(item) {
+        $('.gallery-carousel').append(`
+          <div class="gallery-item">
+            <img src="${item.src}" loading="lazy" alt="${item.alt}">
           </div>
-          <div id="collapse${item.id.replace('heading', '')}" 
-               class="collapse ${item.expanded ? 'show' : ''}" 
-               aria-labelledby="${item.id}" 
-               data-parent="#accordionExample">
-            <div class="card-body">
-              ${item.content}
+        `);
+      });
+
+      // Initialize carousel
+      $('.gallery-carousel').owlCarousel({
+        loop: true,
+        margin: 20,
+        nav: true,
+        dots: true,
+        lazyLoad: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplayHoverPause: true,
+        navText: [
+          '<i class="fas fa-chevron-left"></i>',
+          '<i class="fas fa-chevron-right"></i>'
+        ],
+        responsive: {
+          0: { items: 1 },
+          600: { items: 2 },
+          1000: { items: 3 }
+        }
+      });
+    });
+  }
+
+  /* Load Guests */
+  function loadGuests() {
+    $.getJSON('assets/js/config/guest_config.json', function(config) {
+      const guestContainer = $('#guest .row').eq(1);
+      guestContainer.empty();
+      
+      config.guests.forEach(function(guest) {
+        const socialLinks = guest.social.map(social => 
+          `<li><a href="${social.url}"><i class="${social.icon}"></i></a></li>`
+        ).join('');
+
+        const guestHtml = `
+          <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="single-team mb-30">
+              <div class="team-img">
+                <img src="${guest.image}" loading="lazy" alt="${guest.name}">
+                <ul class="team-social">
+                  ${socialLinks}
+                </ul>
+              </div>
+              <div class="team-caption">
+                <h3><a href="#">${guest.name}</a></h3>
+                <p>${guest.role}</p>
+              </div>
             </div>
           </div>
-        </div>
-      `;
-      
-      calendarContainer.append(calendarHtml);
+        `;
+        
+        guestContainer.append(guestHtml);
+      });
     });
+  }
+
+  /* Load Calendar */
+  function loadCalendar() {
+    $.getJSON('assets/js/config/calendar_config.json', function(config) {
+      const calendarContainer = $('#accordionExample');
+      calendarContainer.empty();
+      
+      config.calendar_items.forEach(function(item) {
+        const calendarHtml = `
+          <div class="card">
+            <div class="card-header" id="${item.id}">
+              <h2 class="mb-0">
+                <a href="#" class="btn-link ${!item.expanded ? 'collapsed' : ''}" 
+                   data-toggle="collapse" 
+                   data-target="#collapse${item.id.replace('heading', '')}" 
+                   aria-expanded="${item.expanded}" 
+                   aria-controls="collapse${item.id.replace('heading', '')}">
+                  <span>${item.time}</span>
+                  <p>${item.title}</p>
+                </a>
+              </h2>
+            </div>
+            <div id="collapse${item.id.replace('heading', '')}" 
+                 class="collapse ${item.expanded ? 'show' : ''}" 
+                 aria-labelledby="${item.id}" 
+                 data-parent="#accordionExample">
+              <div class="card-body">
+                ${item.content}
+              </div>
+            </div>
+          </div>
+        `;
+        
+        calendarContainer.append(calendarHtml);
+      });
+    });
+  }
+
+  $(document).ready(function() {
+    loadGuests();
+    loadCalendar();
+    initGalleryCarousel();
   });
-}
-
-$(document).ready(function() {
-  loadGuests();
-  loadCalendar();
-  initGalleryCarousel();
-});
-
-// ... existing code ...
 
 })(jQuery);
