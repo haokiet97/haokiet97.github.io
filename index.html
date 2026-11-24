@@ -136,6 +136,28 @@
         }
         .contact-icon { font-size: 1.8rem; margin-bottom: 6px; }
 
+        /* GitHub */
+        .profile-github { background: #fff; }
+        .github-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .github-badges img { max-height: 32px; height: auto; border-radius: 8px; }
+        .github-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .github-stats img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
         /* Footer */
         .site-footer {
             background: var(--primary-dark);
@@ -158,6 +180,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="#profile">Trang chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="#about">Về tôi</a></li>
+                <li class="nav-item"><a class="nav-link" href="#github">GitHub</a></li>
                 <li class="nav-item"><a class="nav-link" href="#skills">Kỹ năng</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Liên hệ</a></li>
             </ul>
@@ -205,6 +228,26 @@
                         thời gian nghiên cứu, phát triển cá nhân và tham gia các dự án thực tế.
                     </p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub -->
+    <section class="profile-github" id="github">
+        <div class="container">
+            <div class="section-head">
+                <h2 class="section-title">Thông tin GitHub</h2>
+                <p class="section-sub">Badge, thống kê và đồ thị đóng góp của tôi</p>
+            </div>
+            <div class="github-badges">
+                <a href="https://github.com/haokiet97" target="_blank" class="github-badge-link">
+                    <img src="https://img.shields.io/badge/GitHub-Profile-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Profile">
+                </a>
+                <img src="https://img.shields.io/github/followers/haokiet97?style=for-the-badge&label=Followers" alt="GitHub Followers">
+            </div>
+            <div class="github-stats">
+                <img src="https://github-readme-stats.vercel.app/api?username=haokiet97&show_icons=true&count_private=true" alt="GitHub Stats">
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=haokiet97&langs_count=6" alt="Top Languages">
             </div>
         </div>
     </section>
